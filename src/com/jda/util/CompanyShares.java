@@ -31,8 +31,8 @@ public class CompanyShares {
 	public String getDate() {
 		return date;
 	}
-	public void setDate(String date) {
-		this.date = date;
+	public void setDate() {
+		this.date = new SimpleDateFormat("dd/MM/yyyy").format(new java.util.Date());
 	}
 	
 

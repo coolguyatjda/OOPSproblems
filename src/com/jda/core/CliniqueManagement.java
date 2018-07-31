@@ -5,6 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
@@ -17,8 +18,8 @@ public class CliniqueManagement {
 	public static List<Doctor> doctors;
 	public static List<Patient> patients;
 	public static ObjectMapper mapper = new ObjectMapper();
-	public static String path1 = "C:\\Users\\sanket rathi\\Desktop\\workfromhome-master\\src\\com\\jda\\util\\Doctors.json";
-	public static String path2 = "C:\\Users\\sanket rathi\\Desktop\\workfromhome-master\\src\\com\\jda\\util\\Patients.json";
+	public static String path1 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Doctors.json";
+	public static String path2 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Patients.json";
 
 	public static void main(String[] args) throws IOException{
 		// TODO Auto-generated method stub
@@ -50,6 +51,7 @@ public class CliniqueManagement {
 				System.out.print("Give the Availability");
 				d.setAvailability(InputUtil.getString());
 				doctors.add(d);
+				break;
 			}
 			case 2: {
 				Patient d = new Patient();
@@ -57,11 +59,12 @@ public class CliniqueManagement {
 				d.setName(InputUtil.getString());
 				System.out.print("Give the id: ");
 				d.setID(Integer.parseInt(InputUtil.getString()));
-				System.out.print("Give the Specialization: ");
+				System.out.print("Give the MobileNumber: ");
 				d.setMobileNumber(Long.parseLong(InputUtil.getString()));
-				System.out.print("Give the Availability");
+				System.out.print("Give the Age");
 				d.setAge(Integer.parseInt(InputUtil.getString()));
 				patients.add(d);
+				break;
 			}
 			case 3: {
 				System.out.println("1. Search By Name");
@@ -75,6 +78,7 @@ public class CliniqueManagement {
 				case 3: searchDBySpecialization(InputUtil.getString()); break;
 				case 4: searchDByAvailability(InputUtil.getString()); break;
 				}
+				break;
 			}
 			case 4: {
 				System.out.println("1. Search By Name");
@@ -86,9 +90,25 @@ public class CliniqueManagement {
 				case 2: searchPByMobileNumber(Long.parseLong(InputUtil.getString())); break;
 				case 3: searchPByID(Integer.parseInt(InputUtil.getString())); break;
 			}
+				break;
+			}
+			case 5: {
+				System.out.print("Give the Name of The doctor to Take appointment from: ");
+				String dName = InputUtil.getString();
+				System.out.print("Give the Name of The patient: ");
+				String pName = InputUtil.getString();
+				takeAppointment(dName, pName);
+				break;
+			}
+			case 6: {
+				System.out.print("Give the Name of The doctor: ");
+				String dName = InputUtil.getString();
+				printeReport(dName);
+				break;
 			}
 			case 7: {
 				saveAndQuit();
+				break;
 			}
 		}
 			if(inp == 7) break;
@@ -181,5 +201,17 @@ public class CliniqueManagement {
 		fwp.write(mapper.writeValueAsString(patients));
 		fwp.close();
 	}
+	public static void takeAppointment(String dName, String pName) throws IOException{
+		FileWriter fw = new FileWriter(new File(dName + ".json"));
+		fw.write(pName + "\n");
+		fw.close();
+	}
+	public static void printeReport(String dName) throws IOException{
+		Scanner sc = new Scanner(new File(dName));
+		while(sc.hasNextLine())
+			for(int i=1; i<=5; i++)
+				System.out.println(i + " " + sc.nextLine());
+		sc.close();
+	}	
 
 }
