@@ -2,7 +2,7 @@ package com.jda.util;
 
 public class Patient {
 	private String name;
-	private int ID;
+	private int id;
 	private long mobileNumber;
 	private int age;
 	public String getName() {
@@ -12,10 +12,10 @@ public class Patient {
 		this.name = name;
 	}
 	public int getID() {
-		return ID;
+		return id;
 	}
 	public void setID(int iD) {
-		ID = iD;
+		id = iD;
 	}
 	public long getMobileNumber() {
 		return mobileNumber;

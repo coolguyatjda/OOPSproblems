@@ -1,21 +1,21 @@
 package com.jda.util;
 
 public class Doctor {
-	private String Name;
-	private int ID;
+	private String name;
+	private int id;
 	private String specialization;
-	private boolean availability;
+	private String availability;
 	public String getName() {
-		return Name;
+		return name;
 	}
 	public void setName(String name) {
-		Name = name;
+		this.name = name;
 	}
 	public int getID() {
-		return ID;
+		return id;
 	}
-	public void setID(int iD) {
-		ID = iD;
+	public void setID(int id) {
+		this.id = id;
 	}
 	public String getSpecialization() {
 		return specialization;
@@ -23,12 +23,11 @@ public class Doctor {
 	public void setSpecialization(String specialization) {
 		this.specialization = specialization;
 	}
-	public boolean isAvailability() {
+	public String getAvailability() {
 		return availability;
 	}
-	public void setAvailability(boolean availability) {
+	public void setAvailability(String availability) {
 		this.availability = availability;
 	}
-	
 	
 }
