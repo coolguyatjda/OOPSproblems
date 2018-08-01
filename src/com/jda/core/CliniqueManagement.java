@@ -41,55 +41,19 @@ public class CliniqueManagement {
 			int inp = Integer.parseInt(InputUtil.getString());
 			switch(inp) {
 			case 1: {
-				Doctor d = new Doctor();
-				System.out.print("Give the Name: ");
-				d.setName(InputUtil.getString());
-				System.out.print("Give the id: ");
-				d.setID(Integer.parseInt(InputUtil.getString()));
-				System.out.print("Give the Specialization: ");
-				d.setSpecialization(InputUtil.getString());
-				System.out.print("Give the Availability");
-				d.setAvailability(InputUtil.getString());
-				doctors.add(d);
+				addDoctor();
 				break;
 			}
 			case 2: {
-				Patient d = new Patient();
-				System.out.print("Give the Name: ");
-				d.setName(InputUtil.getString());
-				System.out.print("Give the id: ");
-				d.setID(Integer.parseInt(InputUtil.getString()));
-				System.out.print("Give the MobileNumber: ");
-				d.setMobileNumber(Long.parseLong(InputUtil.getString()));
-				System.out.print("Give the Age");
-				d.setAge(Integer.parseInt(InputUtil.getString()));
-				patients.add(d);
+				addPatient();
 				break;
 			}
 			case 3: {
-				System.out.println("1. Search By Name");
-				System.out.println("2. Search By ID");
-				System.out.println("3. Search by Specialization");
-				System.out.println("4. Search by Availability");
-				int inp1 = Integer.parseInt(InputUtil.getString());
-				switch(inp1) {
-				case 1: searchDByName(InputUtil.getString()); break;
-				case 2: searchDByID(Integer.parseInt(InputUtil.getString())); break;
-				case 3: searchDBySpecialization(InputUtil.getString()); break;
-				case 4: searchDByAvailability(InputUtil.getString()); break;
-				}
+				searchD();
 				break;
 			}
 			case 4: {
-				System.out.println("1. Search By Name");
-				System.out.println("2. Search By MobileNumber");
-				System.out.println("3. Search by ID");
-				int inp1 = Integer.parseInt(InputUtil.getString());
-				switch(inp1) {
-				case 1: searchPByName(InputUtil.getString()); break;
-				case 2: searchPByMobileNumber(Long.parseLong(InputUtil.getString())); break;
-				case 3: searchPByID(Integer.parseInt(InputUtil.getString())); break;
-			}
+				searchP();
 				break;
 			}
 			case 5: {
@@ -113,6 +77,57 @@ public class CliniqueManagement {
 		}
 			if(inp == 7) break;
 		}
+	}
+	public static void addDoctor(){
+		Doctor d = new Doctor();
+		System.out.print("Give the Name: ");
+		d.setName(InputUtil.getString());
+		System.out.print("Give the id: ");
+		d.setID(Integer.parseInt(InputUtil.getString()));
+		System.out.print("Give the Specialization: ");
+		d.setSpecialization(InputUtil.getString());
+		System.out.print("Give the Availability");
+		d.setAvailability(InputUtil.getString());
+		doctors.add(d);
+	}
+	
+	public static void addPatient(){
+		Patient d = new Patient();
+		System.out.print("Give the Name: ");
+		d.setName(InputUtil.getString());
+		System.out.print("Give the id: ");
+		d.setID(Integer.parseInt(InputUtil.getString()));
+		System.out.print("Give the MobileNumber: ");
+		d.setMobileNumber(Long.parseLong(InputUtil.getString()));
+		System.out.print("Give the Age");
+		d.setAge(Integer.parseInt(InputUtil.getString()));
+		patients.add(d);
+	}
+	
+	public static void searchD(){
+		System.out.println("1. Search By Name");
+		System.out.println("2. Search By ID");
+		System.out.println("3. Search by Specialization");
+		System.out.println("4. Search by Availability");
+		int inp1 = Integer.parseInt(InputUtil.getString());
+		switch(inp1) {
+		case 1: searchDByName(InputUtil.getString()); break;
+		case 2: searchDByID(Integer.parseInt(InputUtil.getString())); break;
+		case 3: searchDBySpecialization(InputUtil.getString()); break;
+		case 4: searchDByAvailability(InputUtil.getString()); break;
+		}
+	}
+	
+	public static void searchP(){
+		System.out.println("1. Search By Name");
+		System.out.println("2. Search By MobileNumber");
+		System.out.println("3. Search by ID");
+		int inp1 = Integer.parseInt(InputUtil.getString());
+		switch(inp1) {
+		case 1: searchPByName(InputUtil.getString()); break;
+		case 2: searchPByMobileNumber(Long.parseLong(InputUtil.getString())); break;
+		case 3: searchPByID(Integer.parseInt(InputUtil.getString())); break;
+	}
 	}
 	public static void searchDByName(String name) {
 		for(int i=0; i<doctors.size(); i++) {

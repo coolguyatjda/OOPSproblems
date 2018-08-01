@@ -42,8 +42,8 @@ public class StockAccount {
 	public void buy(double amount, String symbol){
 		CompanyShares temp = new CompanyShares(symbol, (int)amount);
 		this.stock.add(temp);
-		companysharesStack.push("Bought" + symbol);
-		companysharesQueue.enqueue("Bought at " + temp.getDate());
+		companysharesStack.push("Bought " + symbol);
+		companysharesQueue.enqueue("Bought " +  symbol   + " Bought at " + temp.getDate());
 		for(int i=0; i<companies.size(); i++){
 			if(companies.get(i).getName().equals(symbol)){
 				companies.get(i).setTotalShares(companies.get(i).getTotalShares()-(int)(amount/companies.get(i).getPrice()));
@@ -54,7 +54,7 @@ public class StockAccount {
 	public void sell(double amount, String symbol){
 		CompanyShares temp = new CompanyShares(symbol, (int)amount);
 		companysharesStack.push("Sold" + symbol);
-		companysharesQueue.enqueue("Sold at " + temp.getDate());
+		companysharesQueue.enqueue("Sold " + symbol + " Sold at " + temp.getDate());
 		for(int i=0; i<stock.size(); i++){
 			if(stock.get(i).getSymbol().equals(symbol)){
 				stock.get(i).setNumberOfShares(stock.get(i).getNumberOfShares() -(int) amount);
@@ -77,7 +77,7 @@ public class StockAccount {
 	}
 	public void printReport(){
 		for(int i=0; i< companysharesQueue.size(); i++)
-			System.out.println(companysharesStack.pop() + " " + companysharesQueue.dequeue());
+			System.out.println(i + ". " + companysharesQueue.dequeue());
 	}
 	
 }
