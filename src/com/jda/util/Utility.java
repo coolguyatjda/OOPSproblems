@@ -9,6 +9,8 @@ import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.type.TypeReference;
 
 public class Utility<T> {
+
+	
 	ObjectMapper mapper = new ObjectMapper();
 	public List<T> read(String fileName, Class<T> className) throws IOException{
 		//List<T> listOfDoctors = mapper.readValue(new File(fileName), new TypeReference<List<T>>(). {});

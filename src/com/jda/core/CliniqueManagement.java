@@ -3,82 +3,25 @@ package com.jda.core;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
 import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.type.TypeReference;
 
 import com.jda.util.Doctor;
 import com.jda.util.InputUtil;
 import com.jda.util.Patient;
+import com.jda.util.Utility;
 
 public class CliniqueManagement {
-	public static List<Doctor> doctors;
-	public static List<Patient> patients;
-	public static ObjectMapper mapper = new ObjectMapper();
-	public static String path1 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Doctors.json";
-	public static String path2 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Patients.json";
-
-	public static void main(String[] args) throws IOException{
-		// TODO Auto-generated method stub
-		try {
-			doctors = mapper.readValue(new File(path1), new TypeReference<ArrayList<Doctor>>() {});
-			patients = mapper.readValue(new File(path2), new TypeReference<ArrayList<Patient>>() {});
-		}catch(Exception e) {
-			doctors = new ArrayList<>();
-			patients = new ArrayList<>();
-		}
-		while(true) {
-			System.out.println("1. Add a Doctor");
-			System.out.println("2. Add a Patient");
-			System.out.println("3. Search for Doctors");
-			System.out.println("4. Search for Patients");
-			System.out.println("5. Take appointment of a Doctor");
-			System.out.println("6. Print Report");
-			System.out.println("7. Save and Quit");
-			int inp = Integer.parseInt(InputUtil.getString());
-			switch(inp) {
-			case 1: {
-				addDoctor();
-				break;
-			}
-			case 2: {
-				addPatient();
-				break;
-			}
-			case 3: {
-				searchD();
-				break;
-			}
-			case 4: {
-				searchP();
-				break;
-			}
-			case 5: {
-				System.out.print("Give the Name of The doctor to Take appointment from: ");
-				String dName = InputUtil.getString();
-				System.out.print("Give the Name of The patient: ");
-				String pName = InputUtil.getString();
-				takeAppointment(dName, pName);
-				break;
-			}
-			case 6: {
-				System.out.print("Give the Name of The doctor: ");
-				String dName = InputUtil.getString();
-				printeReport(dName);
-				break;
-			}
-			case 7: {
-				saveAndQuit();
-				break;
-			}
-		}
-			if(inp == 7) break;
-		}
-	}
-	public static void addDoctor(){
+	private static List<Doctor> doctors;
+	private static List<Patient> patients;
+	private static ObjectMapper mapper = new ObjectMapper();
+	private static String path1 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Doctors.json";
+	private static String path2 = "/home/bridgelabz/workspace/OOPS/src/com/jda/util/Patients.json";
+	
+	public static void addDoctor() throws IOException{
+		doctors = new Utility<Doctor>().read(path1, Doctor.class);
 		Doctor d = new Doctor();
 		System.out.print("Give the Name: ");
 		d.setName(InputUtil.getString());
@@ -91,7 +34,8 @@ public class CliniqueManagement {
 		doctors.add(d);
 	}
 	
-	public static void addPatient(){
+	public static void addPatient() throws IOException{
+		patients = new Utility<Patient>().read(path2, Patient.class);
 		Patient d = new Patient();
 		System.out.print("Give the Name: ");
 		d.setName(InputUtil.getString());
